@@ -8,21 +8,31 @@ function reset(arr, position) {
   position.innerHTML = "";
 }
 
+function check(arr, input) {
+  var checkNum = Number.isInteger(input);
+  if (checkNum === true) {
+    arr.push(input);
+  }
+}
 
 // BT1
 var arrNum = [];
 var box = document.querySelector("#display");
 document.querySelector("#addNum1").onclick = function () {
   var inputNum = +document.querySelector("#inputNum").value;
-  arrNum.push(inputNum);
+  // var check = Number.isInteger(inputNum);
+  // if( check === true){
+  //   arrNum.push(inputNum);
+  // }
+  check(arrNum, inputNum);
+
   console.log("Số đã nhập:" + arrNum);
   clearAndShow(arrNum, box, document.querySelector("#inputNum"));
 };
 
-document.querySelector("#reset1").onclick = function() {
+document.querySelector("#reset1").onclick = function () {
   reset(arrNum, box);
-}
-
+};
 
 document.querySelector("#handleNum1").onclick = function () {
   var sumPlus = 0;
@@ -149,7 +159,7 @@ document.querySelector("#findNum8").onclick = function () {
 
   console.log(arrNum8);
 
-  for (var m = 0; m <= arrNum8.length; m++){
+  for (var m = 0; m <= arrNum8.length; m++) {
     var index = arrNum8.indexOf(arrNum8[m], -1);
     if (index == -1) {
       document.querySelector("#result8").innerHTML =
@@ -164,21 +174,21 @@ document.querySelector("#findNum8").onclick = function () {
 };
 
 //------------------------------------------------------------------------------------
-// BT9 
+// BT9
 var arrNum9 = [];
-var box9 = document.querySelector("#display9")
-document.querySelector("#addNum9").onclick = function() {
+var box9 = document.querySelector("#display9");
+document.querySelector("#addNum9").onclick = function () {
   inputNum9 = +document.querySelector("#inputNum9").value;
-  arrNum9.push(inputNum9)
-  clearAndShow(arrNum9, box9, document.querySelector("#inputNum9"))
-}
+  check(arrNum9, inputNum9);
+  clearAndShow(arrNum9, box9, document.querySelector("#inputNum9"));
+};
 
-document.querySelector("#reset9").onclick = function() {
+document.querySelector("#reset9").onclick = function () {
   reset(arrNum9, box9);
-}
-document.querySelector("#findNum9").onclick = function() {
+};
+document.querySelector("#findNum9").onclick = function () {
   var arrNumber9 = [];
-  var arrNumber = arrNum.concat(arrNum9)
+  var arrNumber = arrNum.concat(arrNum9);
   console.log(arrNumber9);
   arrNumber9 = arrNumber.filter((number) => {
     for (var i = 2; i <= Math.sqrt(number); i++) {
@@ -190,35 +200,41 @@ document.querySelector("#findNum9").onclick = function() {
   });
   console.log(arrNumber9);
   var count = arrNumber9.length;
-  if(count === 0){
-    document.querySelector("#result9").innerHTML = ` Mảng gồm không chứa số nguyên.`
+  if (count === 0) {
+    document.querySelector(
+      "#result9"
+    ).innerHTML = ` Mảng gồm không chứa số nguyên.`;
   } else {
-    document.querySelector("#result9").innerHTML = ` Mảng gồm ${count} số nguyên.`
+    document.querySelector(
+      "#result9"
+    ).innerHTML = ` Mảng gồm ${count} số nguyên.`;
   }
-}
+};
 
 //---------------------------------------------------------------------------------------
 // BT10
-document.querySelector("#compare10").onclick = function() {
+document.querySelector("#compare10").onclick = function () {
   var positiveNum = [];
   var negativeNum = [];
-  for(var i = 0; i < arrNum.length; i++){
-    if(arrNum[i] !== 0){
-      if(arrNum[i] > 0){
+  for (var i = 0; i < arrNum.length; i++) {
+    if (arrNum[i] !== 0) {
+      if (arrNum[i] > 0) {
         positiveNum.push(arrNum[i]);
       } else {
-        negativeNum.push(arrNum[i])
-      };
-    } 
+        negativeNum.push(arrNum[i]);
+      }
+    }
     // console.log(positiveNum);
     // console.log(negativeNum);
-    if(positiveNum.length > negativeNum.length){
-      document.querySelector("#result10").innerHTML = "Số dương nhiều hơn số âm"
+    if (positiveNum.length > negativeNum.length) {
+      document.querySelector("#result10").innerHTML =
+        "Số dương nhiều hơn số âm";
     } else if (positiveNum < negativeNum) {
-      document.querySelector("#result10").innerHTML = "Số âm nhiều hơn số dương"
+      document.querySelector("#result10").innerHTML =
+        "Số âm nhiều hơn số dương";
     } else {
-      document.querySelector("#result10").innerHTML = "Số âm và số dương bằng nhau"
+      document.querySelector("#result10").innerHTML =
+        "Số âm và số dương bằng nhau";
     }
   }
-}
-
+};
