@@ -180,12 +180,15 @@ document.querySelector("#compare10").onclick = function() {
   var positiveNum = [];
   var negativeNum = [];
   for(var i = 0; i < arrNum.length; i++){
-    if(arrNum[i] > 0){
-      positiveNum.push(arrNum[i]);
-    } else {
-      negativeNum.push(arrNum[i])
-    };
-    
+    if(arrNum[i] !== 0){
+      if(arrNum[i] > 0){
+        positiveNum.push(arrNum[i]);
+      } else {
+        negativeNum.push(arrNum[i])
+      };
+    } 
+    // console.log(positiveNum);
+    // console.log(negativeNum);
     if(positiveNum.length > negativeNum.length){
       document.querySelector("#result10").innerHTML = "Số dương nhiều hơn số âm"
     } else {
