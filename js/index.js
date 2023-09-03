@@ -1,22 +1,28 @@
+function clearAndShow(arr, position, input) {
+  input.value = "";
+  position.innerHTML = "";
+  position.innerHTML += "Số đã nhập: " + arr.join(", ");
+}
+function reset(arr, position) {
+  arr.splice(0, arr.length);
+  position.innerHTML = "";
+}
+
+
 // BT1
 var arrNum = [];
-var inputNum = document.querySelector("#inputNum");
 var box = document.querySelector("#display");
 document.querySelector("#addNum1").onclick = function () {
   var inputNum = +document.querySelector("#inputNum").value;
   arrNum.push(inputNum);
   console.log("Số đã nhập:" + arrNum);
-  clearAndShow();
+  clearAndShow(arrNum, box, document.querySelector("#inputNum"));
 };
-function clearAndShow() {
-  inputNum.value = "";
-  box.innerHTML = "";
-  box.innerHTML += "Số đã nhập: " + arrNum.join(", ");
+
+document.querySelector("#reset1").onclick = function() {
+  reset(arrNum, box);
 }
-function reset() {
-  arrNum = []
-  box.innerHTML = "";
-}
+
 
 document.querySelector("#handleNum1").onclick = function () {
   var sumPlus = 0;
@@ -159,9 +165,22 @@ document.querySelector("#findNum8").onclick = function () {
 
 //------------------------------------------------------------------------------------
 // BT9 
+var arrNum9 = [];
+var box9 = document.querySelector("#display9")
+document.querySelector("#addNum9").onclick = function() {
+  inputNum9 = +document.querySelector("#inputNum9").value;
+  arrNum9.push(inputNum9)
+  clearAndShow(arrNum9, box9, document.querySelector("#inputNum9"))
+}
+
+document.querySelector("#reset9").onclick = function() {
+  reset(arrNum9, box9);
+}
 document.querySelector("#findNum9").onclick = function() {
-  var arrNum9 = [];
-  arrNum9 = arrNum.filter((number) => {
+  var arrNumber9 = [];
+  var arrNumber = arrNum.concat(arrNum9)
+  console.log(arrNumber9);
+  arrNumber9 = arrNumber.filter((number) => {
     for (var i = 2; i <= Math.sqrt(number); i++) {
       if (number % i === 0) {
         return false;
@@ -169,9 +188,13 @@ document.querySelector("#findNum9").onclick = function() {
     }
     return number > 1;
   });
-
-  var count = arrNum9.length;
-  document.querySelector("#result9").innerHTML = ` Mảng gồm ${count} số nguyên.`
+  console.log(arrNumber9);
+  var count = arrNumber9.length;
+  if(count === 0){
+    document.querySelector("#result9").innerHTML = ` Mảng gồm không chứa số nguyên.`
+  } else {
+    document.querySelector("#result9").innerHTML = ` Mảng gồm ${count} số nguyên.`
+  }
 }
 
 //---------------------------------------------------------------------------------------
@@ -191,8 +214,10 @@ document.querySelector("#compare10").onclick = function() {
     // console.log(negativeNum);
     if(positiveNum.length > negativeNum.length){
       document.querySelector("#result10").innerHTML = "Số dương nhiều hơn số âm"
-    } else {
+    } else if (positiveNum < negativeNum) {
       document.querySelector("#result10").innerHTML = "Số âm nhiều hơn số dương"
+    } else {
+      document.querySelector("#result10").innerHTML = "Số âm và số dương bằng nhau"
     }
   }
 }
