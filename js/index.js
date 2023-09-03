@@ -1,24 +1,28 @@
 // BT1
-var inputNum = [];
-var arrNum1 = document.querySelector("#arrNumber1");
+var arrNum = [];
+var inputNum = document.querySelector("#inputNum");
 var box = document.querySelector("#display");
 document.querySelector("#addNum1").onclick = function () {
-  var arrNum1 = +document.querySelector("#arrNumber1").value;
-  inputNum.push(arrNum1);
-  console.log("Số đã nhập:" + inputNum);
+  var inputNum = +document.querySelector("#inputNum").value;
+  arrNum.push(inputNum);
+  console.log("Số đã nhập:" + arrNum);
   clearAndShow();
 };
 function clearAndShow() {
-  arrNum1.value = "";
+  inputNum.value = "";
   box.innerHTML = "";
-  box.innerHTML += "Số đã nhập: " + inputNum.join(", ");
+  box.innerHTML += "Số đã nhập: " + arrNum.join(", ");
+}
+function reset() {
+  arrNum = []
+  box.innerHTML = "";
 }
 
 document.querySelector("#handleNum1").onclick = function () {
   var sumPlus = 0;
-  for (var i = 0; i < inputNum.length; i++) {
-    if (inputNum[i] > 0) {
-      sumPlus += inputNum[i];
+  for (var i = 0; i < arrNum.length; i++) {
+    if (arrNum[i] > 0) {
+      sumPlus += arrNum[i];
     }
   }
   document.querySelector("#result1").innerHTML = `
@@ -28,78 +32,165 @@ document.querySelector("#handleNum1").onclick = function () {
 //-------------------------------------------------------------------------------------
 // BT2
 
-document.querySelector("#countNumb2").onclick = function() {
-    var countPlus = 0;
-    for(var i = 0; i < inputNum.length; i++){
-        if(inputNum[i] > 0){
-            countPlus++;
-        }
+document.querySelector("#countNumb2").onclick = function () {
+  var countPlus = 0;
+  for (var i = 0; i < arrNum.length; i++) {
+    if (arrNum[i] > 0) {
+      countPlus++;
     }
-    document.querySelector("#result2").innerHTML = ` Tổng các số dương: ${countPlus}`
-}
+  }
+  document.querySelector(
+    "#result2"
+  ).innerHTML = ` Tổng các số dương: ${countPlus}`;
+};
 
 //----------------------------------------------------------------------------------------
 // BT3
 
-document.querySelector("#findNum3").onclick = function() {
-    var minNum = inputNum[0]
-    for(var i = 0; i < inputNum.length; i++){
-        if(inputNum[i] < minNum){
-            minNum = inputNum[i]
-        }
+document.querySelector("#findNum3").onclick = function () {
+  var minNum = arrNum[0];
+  for (var i = 0; i < arrNum.length; i++) {
+    if (arrNum[i] < minNum) {
+      minNum = arrNum[i];
     }
+  }
 
-    document.querySelector("#result3").innerHTML = ` Số nhỏ nhất của chuỗi: ${minNum}`
-}
+  document.querySelector(
+    "#result3"
+  ).innerHTML = ` Số nhỏ nhất của chuỗi: ${minNum}`;
+};
 
 //-------------------------------------------------------------------------------------
-// BT4 
+// BT4
 
-document.querySelector("#findNum4").onclick = function() {
-    var minNum4 = inputNum[0]
-    for(var i = 0; i < inputNum.length; i++){
-        if(inputNum[i] > 0 && inputNum[i] < minNum4){
-            minNum4 = inputNum[i]
-        }
+document.querySelector("#findNum4").onclick = function () {
+  var minNum4 = arrNum[0];
+  for (var i = 0; i < arrNum.length; i++) {
+    if (arrNum[i] > 0 && arrNum[i] < minNum4) {
+      minNum4 = arrNum[i];
     }
+  }
 
-    document.querySelector("#result4").innerHTML = ` Số nhỏ nhất của chuỗi: ${minNum4}`
-}
+  document.querySelector(
+    "#result4"
+  ).innerHTML = ` Số nhỏ nhất của chuỗi: ${minNum4}`;
+};
 
 //--------------------------------------------------------------------------------------
-// BT5 
-var inputNum2 = [];
-document.querySelector("#findNum5").onclick = function() {
-    for(var i = 0; i < inputNum.length; i++){
-        var inputNum2 = inputNum.filter(function (n) {
-            return n%2 == 0;
-        })
-        console.log(inputNum2);
+// BT5
+var arrNum2 = [];
+document.querySelector("#findNum5").onclick = function () {
+  for (var i = 0; i < arrNum.length; i++) {
+    var arrNum2 = arrNum.filter(function (n) {
+      return n % 2 == 0;
+    });
+    console.log(arrNum2);
 
-        if(inputNum2.length == ""){
-            document.querySelector("#result5").innerHTML = "Chuỗi không chứa số chẵn"
-        } else {
-            var lastNum = inputNum2.pop()
-            document.querySelector("#result5").innerHTML = ` Số chẵn cuối cùng: ${lastNum}`
-        }
-    }
-}
-
-document.querySelector("#swapNum6").onclick = function () {
-    var m = +document.querySelector("#locate1").value;
-    var n = +document.querySelector("#locate2").value;
-    if(m < inputNum.length && n < inputNum.length){
-        [inputNum[m], inputNum[n]] = [inputNum[n], inputNum[m]];
-
-        document.querySelector("#result6").innerHTML = ` Sau thay đổi: ${inputNum}`
+    if (arrNum2.length == "") {
+      document.querySelector("#result5").innerHTML = "Chuỗi không chứa số chẵn";
     } else {
-        document.querySelector("#result6").innerHTML = "vui lòng nhập lại vị trí"
+      var lastNum = arrNum2.pop();
+      document.querySelector(
+        "#result5"
+      ).innerHTML = ` Số chẵn cuối cùng: ${lastNum}`;
     }
+  }
+};
 
-    clearAndShow6()
+//------------------------------------------------------------------------------------------
+//BT6
+document.querySelector("#swapNum6").onclick = function () {
+  var m = +document.querySelector("#locate1").value;
+  var n = +document.querySelector("#locate2").value;
+  if (m < arrNum.length && n < arrNum.length) {
+    [arrNum[m], arrNum[n]] = [arrNum[n], arrNum[m]];
+
+    document.querySelector("#result6").innerHTML = ` Sau thay đổi: ${arrNum}`;
+  } else {
+    document.querySelector("#result6").innerHTML = "vui lòng nhập lại vị trí";
+  }
+
+  clearAndShow6();
+};
+
+function clearAndShow6() {
+  document.querySelector("#locate1").value = "";
+  document.querySelector("#locate2").value = "";
 }
 
-function clearAndShow6 () {
-    document.querySelector("#locate1").value = "";
-    document.querySelector("#locate2").value = "";
+//---------------------------------------------------------------------------------------
+// BT7
+document.querySelector("#sortNum7").onclick = function () {
+  arrNum = arrNum.sort(function (a, b) {
+    return a - b;
+  });
+  document.querySelector("#result7").innerHTML = arrNum;
+};
+
+//--------------------------------------------------------------------------------------
+// BT8
+
+document.querySelector("#findNum8").onclick = function () {
+  var arrNum8 = [];
+  arrNum8 = arrNum.filter((number) => {
+    for (var i = 2; i <= Math.sqrt(number); i++) {
+      if (number % i === 0) {
+        return false;
+      }
+    }
+    return number > 1;
+  });
+
+  console.log(arrNum8);
+
+  for (var m = 0; m <= arrNum8.length; m++){
+    var index = arrNum8.indexOf(arrNum8[m], -1);
+    if (index == -1) {
+      document.querySelector("#result8").innerHTML =
+        "Không tìm thấy số nguyên tố";
+    } else {
+      var arrShift = arrNum8.shift();
+      document.querySelector(
+        "#result8"
+      ).innerHTML = ` Số nguyên tố đầu tiên: ${arrShift}`;
+    }
+  }
+};
+
+//------------------------------------------------------------------------------------
+// BT9 
+document.querySelector("#findNum9").onclick = function() {
+  var arrNum9 = [];
+  arrNum9 = arrNum.filter((number) => {
+    for (var i = 2; i <= Math.sqrt(number); i++) {
+      if (number % i === 0) {
+        return false;
+      }
+    }
+    return number > 1;
+  });
+
+  var count = arrNum9.length;
+  document.querySelector("#result9").innerHTML = ` Mảng gồm ${count} số nguyên.`
 }
+
+//---------------------------------------------------------------------------------------
+// BT10
+document.querySelector("#compare10").onclick = function() {
+  var positiveNum = [];
+  var negativeNum = [];
+  for(var i = 0; i < arrNum.length; i++){
+    if(arrNum[i] > 0){
+      positiveNum.push(arrNum[i]);
+    } else {
+      negativeNum.push(arrNum[i])
+    };
+    
+    if(positiveNum.length > negativeNum.length){
+      document.querySelector("#result10").innerHTML = "Số dương nhiều hơn số âm"
+    } else {
+      document.querySelector("#result10").innerHTML = "Số âm nhiều hơn số dương"
+    }
+  }
+}
+
