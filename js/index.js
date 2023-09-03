@@ -8,23 +8,26 @@ function reset(arr, position) {
   position.innerHTML = "";
 }
 
-function check(arr, input) {
+function check(arr, input, position) {
   var checkNum = Number.isInteger(input);
   if (checkNum === true) {
     arr.push(input);
+  } else {
+    position.innerHTML = "Vui long nhập số nguyên"
   }
 }
 
 // BT1
 var arrNum = [];
 var box = document.querySelector("#display");
+var boxWarning = document.querySelector("#displayWarning");
 document.querySelector("#addNum1").onclick = function () {
   var inputNum = +document.querySelector("#inputNum").value;
   // var check = Number.isInteger(inputNum);
   // if( check === true){
   //   arrNum.push(inputNum);
   // }
-  check(arrNum, inputNum);
+  check(arrNum, inputNum, boxWarning);
 
   console.log("Số đã nhập:" + arrNum);
   clearAndShow(arrNum, box, document.querySelector("#inputNum"));
@@ -179,7 +182,7 @@ var arrNum9 = [];
 var box9 = document.querySelector("#display9");
 document.querySelector("#addNum9").onclick = function () {
   inputNum9 = +document.querySelector("#inputNum9").value;
-  check(arrNum9, inputNum9);
+  arrNum9.push(inputNum9);
   clearAndShow(arrNum9, box9, document.querySelector("#inputNum9"));
 };
 
@@ -189,7 +192,13 @@ document.querySelector("#reset9").onclick = function () {
 document.querySelector("#findNum9").onclick = function () {
   var arrNumber9 = [];
   var arrNumber = arrNum.concat(arrNum9);
-  console.log(arrNumber9);
+  
+  for(var k = 0; k < arrNumber.length; k++){
+    if(Number.isInteger(arrNumber[k]) === false){
+      arrNumber.splice(k, 1);
+    }
+  }
+  
   arrNumber9 = arrNumber.filter((number) => {
     for (var i = 2; i <= Math.sqrt(number); i++) {
       if (number % i === 0) {
