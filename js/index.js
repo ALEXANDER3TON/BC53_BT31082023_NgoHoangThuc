@@ -12,8 +12,9 @@ function check(arr, input, position) {
   var checkNum = Number.isInteger(input);
   if (checkNum === true) {
     arr.push(input);
+    position.innerHTML = "";
   } else {
-    position.innerHTML = "Vui long nhập số nguyên"
+    position.innerHTML = "Vui lòng nhập số nguyên";
   }
 }
 
@@ -190,25 +191,14 @@ document.querySelector("#reset9").onclick = function () {
   reset(arrNum9, box9);
 };
 document.querySelector("#findNum9").onclick = function () {
-  var arrNumber9 = [];
-  var arrNumber = arrNum.concat(arrNum9);
-  
-  for(var k = 0; k < arrNumber.length; k++){
-    if(Number.isInteger(arrNumber[k]) === false){
+  for(var k = 0; k < arrNum9.length; k++){
+    if(Number.isInteger(arrNum9[k]) === false){
       arrNumber.splice(k, 1);
     }
   }
   
-  arrNumber9 = arrNumber.filter((number) => {
-    for (var i = 2; i <= Math.sqrt(number); i++) {
-      if (number % i === 0) {
-        return false;
-      }
-    }
-    return number > 1;
-  });
-  console.log(arrNumber9);
-  var count = arrNumber9.length;
+  console.log(arrNum9);
+  var count = arrNum9.length;
   if (count === 0) {
     document.querySelector(
       "#result9"
