@@ -193,7 +193,7 @@ document.querySelector("#reset9").onclick = function () {
 document.querySelector("#findNum9").onclick = function () {
   for(var k = 0; k < arrNum9.length; k++){
     if(Number.isInteger(arrNum9[k]) === false){
-      arrNumber.splice(k, 1);
+      arrNum9.splice(k, 1);
     }
   }
   
