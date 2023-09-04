@@ -192,13 +192,13 @@ document.querySelector("#reset9").onclick = function () {
 };
 document.querySelector("#findNum9").onclick = function () {
   for(var k = 0; k < arrNum9.length; k++){
-    if(Number.isInteger(arrNum9[k]) === false){
-      arrNum9.splice(k, 1);
-    }
+    var arrResult = arrNum9.filter(function(n) {
+      return Number.isInteger(n) === true
+    })
   }
   
-  console.log(arrNum9);
-  var count = arrNum9.length;
+  console.log(arrResult);
+  var count = arrResult.length;
   if (count === 0) {
     document.querySelector(
       "#result9"
